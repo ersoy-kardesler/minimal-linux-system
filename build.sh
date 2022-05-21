@@ -1,5 +1,6 @@
 #!/bin/sh
-# Ersoy Kardesler Linux build script
+#
+# Ersoy Kardesler Minimal Linux System build script
 # Copyright (C) 2016-2021 John Davidson
 #               2021-2022 Erdem Ersoy and Ercan Ersoy
 #
@@ -22,7 +23,7 @@ set -ex
 
 
 # Linux-libre Package
-LINUX_LIBRE_VERSION_NOT_GNU=5.10.100
+LINUX_LIBRE_VERSION_NOT_GNU=5.10.117
 LINUX_LIBRE_VERSION=${LINUX_LIBRE_VERSION_NOT_GNU}-gnu1
 LINUX_LIBRE_NAME_AND_VERSION=linux-libre-${LINUX_LIBRE_VERSION}
 LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU=linux-${LINUX_LIBRE_VERSION_NOT_GNU}
@@ -219,7 +220,7 @@ cp bios/com32/elflink/ldlinux/ldlinux.c32 ../../isoimage
 
 echo 'default kernel.gz initrd=rootfs.gz rdinit=/sbin/init console=tty0 vga=ask' > ../../isoimage/isolinux.cfg
 
-xorriso -as mkisofs -o ../../ersoy_kardesler.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
+xorriso -as mkisofs -o ../../ersoy-kardesler-minimal-linux-system.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
 
 cd ../..
 

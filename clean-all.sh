@@ -1,5 +1,6 @@
 #!/bin/sh
-# Ersoy Kardesler Linux clean with ISO images script
+#
+# Ersoy Kardesler Minimal Linux System all clean script
 # Copyright (C) 2017-2021 John Davidson
 #               2021-2022 Ercan Ersoy and Erdem Ersoy
 #

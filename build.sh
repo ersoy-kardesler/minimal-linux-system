@@ -91,14 +91,12 @@ if [ ! -d ${SYSLINUX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${SYSLINUX_P
 cd ..
 
 
-# Configure and install Linux
+# Configure and install Linux-libre
 cd packages_extracted/${LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU}
-
-make distclean x86_64_defconfig
 
 cp -T ../../configs/linux-config .config
 
-make savedefconfig bzImage
+make
 
 cp arch/x86/boot/bzImage ../../isoimage/kernel.gz
 
@@ -108,10 +106,9 @@ cd ../..
 # Configure and install BusyBox
 cd packages_extracted/${BUSYBOX_NAME_AND_VERSION}
 
-make distclean defconfig
-
 cp -T ../../configs/busybox-config .config
 
+make
 make busybox install
 
 cp -r _install/* ../../rootfs

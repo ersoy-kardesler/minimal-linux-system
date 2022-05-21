@@ -1,8 +1,9 @@
 # Ersoy Kardeşler Minimal Linux System
 
-A Linux-libre ISO image build script based on [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
+A minimal Linux-libre system build script based on [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
 
 Copyright (c) 2016-2021 John Davidson
+
 Copyright (c) 2021-2022 Ercan Ersoy and Erdem Ersoy
 
 The source bundles are downloaded and compiled automatically. The script requires host toolchain.

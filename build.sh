@@ -143,7 +143,7 @@ cd ../..
 # Prepare root filesystem with some changes
 cd rootfs
 
-mkdir dev sys tmp
+mkdir -p dev sys tmp var/cache var/lock var/log var/spool var/tmp
 mkdir -p etc/init.d
 mkdir -p proc/sys/kernel
 
@@ -159,7 +159,7 @@ echo '::respawn:/sbin/getty 115200 console' >> etc/inittab
 
 ## Add /etc/init.d/rcS
 echo '#!/bin/sh' > etc/init.d/rcS
-echo 'dmesg -n 1' >> etc/init.d/rcS
+echo 'dmesg -n 5' >> etc/init.d/rcS
 echo 'mount -t proc proc /proc' >> etc/init.d/rcS
 echo 'mount -t sysfs sysfs /sys' >> etc/init.d/rcS
 echo 'mount -t tmpfs -o size=64m tmp_files /tmp' >> etc/init.d/rcS
@@ -181,15 +181,15 @@ echo 'random root:root 444' >> etc/mdev.conf
 echo 'urandom root:root 444' >> etc/mdev.conf
 
 ## Add /etc/motd
-echo '*********************************' > etc/motd
-echo '*                               *' >> etc/motd
-echo '* Welcome to Ersoy Kardesler OS *' >> etc/motd
-echo '*                               *' >> etc/motd
-echo '*********************************' >> etc/motd
+echo '***********************************' > etc/motd
+echo '*                                 *' >> etc/motd
+echo '* Welcome to Minimal Linux System *' >> etc/motd
+echo '*                                 *' >> etc/motd
+echo '***********************************' >> etc/motd
 
 ## Add /etc/passwd
 echo 'root:x:0:0:root:/root:/bin/sh' > etc/passwd
-echo 'daemon:x:1:1:daemon:/usr/sbin:/bin/false' >> etc/passwd 
+echo 'daemon:x:1:1:daemon:/usr/sbin:/bin/false' >> etc/passwd
 
 ## Add /etc/profile
 echo '#!/bin/sh' > etc/profile

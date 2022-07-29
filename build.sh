@@ -176,7 +176,8 @@ echo 'mdev -s' >> etc/init.d/rcS
 chmod +x etc/init.d/rcS
 
 ## Add /etc/mdev.conf
-echo 'null root:root 666' > etc/mdev.conf
+echo 'console root:root 600' > etc/mdev.conf
+echo 'null root:root 666' >> etc/mdev.conf
 echo 'random root:root 444' >> etc/mdev.conf
 echo 'urandom root:root 444' >> etc/mdev.conf
 

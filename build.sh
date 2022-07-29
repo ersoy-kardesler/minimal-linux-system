@@ -218,7 +218,7 @@ cp bios/com32/elflink/ldlinux/ldlinux.c32 ../../isoimage
 cp bios/com32/libutil/libutil.c32 ../../isoimage
 cp bios/com32/menu/menu.c32 ../../isoimage
 
-cp configs/isolinux.cfg ../../isoimage/isolinux.cfg
+cp ../../configs/isolinux.cfg ../../isoimage/isolinux.cfg
 
 xorriso -as mkisofs -o ../../ersoy-kardesler-minimal-linux-system.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
 

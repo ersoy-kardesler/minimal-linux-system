@@ -194,6 +194,7 @@ echo 'daemon:x:1:1:daemon:/usr/sbin:/bin/false' >> etc/passwd
 
 ## Add /etc/profile
 echo '#!/bin/sh' > etc/profile
+echo 'export TERM=linux' > etc/profile
 
 chmod +x etc/profile
 

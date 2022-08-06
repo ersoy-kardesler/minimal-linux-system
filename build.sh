@@ -147,15 +147,23 @@ mkdir -p dev sys tmp var/cache var/lock var/log var/spool var/tmp
 mkdir -p etc/init.d
 mkdir -p proc/sys/kernel
 
+
 ## Add /etc/group
 echo 'root:x:0:' > etc/group
 echo 'daemon:x:1:' >> etc/group
 
+
+## Add /etc/hostname
+echo 'minimal' > etc/hostname
+
+
 ## Add /etc/inittab
 echo '::sysinit:/etc/init.d/rcS' > etc/inittab
+echo '::sysinit:/bin/hostname -F /etc/hostname' >> etc/inittab
 echo '::respawn:/sbin/syslogd -n' >> etc/inittab
 echo '::respawn:/sbin/klogd -n' >> etc/inittab
 echo '::respawn:/sbin/getty 115200 console' >> etc/inittab
+
 
 ## Add /etc/init.d/rcS
 echo '#!/bin/sh' > etc/init.d/rcS
@@ -175,11 +183,13 @@ echo 'mdev -s' >> etc/init.d/rcS
 
 chmod +x etc/init.d/rcS
 
+
 ## Add /etc/mdev.conf
 echo 'console root:root 600' > etc/mdev.conf
 echo 'null root:root 666' >> etc/mdev.conf
 echo 'random root:root 444' >> etc/mdev.conf
 echo 'urandom root:root 444' >> etc/mdev.conf
+
 
 ## Add /etc/motd
 echo '***********************************' > etc/motd
@@ -188,9 +198,11 @@ echo '* Welcome to Minimal Linux System *' >> etc/motd
 echo '*                                 *' >> etc/motd
 echo '***********************************' >> etc/motd
 
+
 ## Add /etc/passwd
 echo 'root:x:0:0:root:/root:/bin/sh' > etc/passwd
 echo 'daemon:x:1:1:daemon:/usr/sbin:/bin/false' >> etc/passwd
+
 
 ## Add /etc/profile
 echo '#!/bin/sh' > etc/profile
@@ -198,11 +210,13 @@ echo 'export TERM=linux' >> etc/profile
 
 chmod +x etc/profile
 
+
 ## Add /etc/shadow
 echo 'root::10933:0:99999:7:::' > etc/shadow
 echo 'daemon:*:10933:0:99999:7:::' >> etc/shadow
 
 chmod 0600 etc/shadow
+
 
 # Package root filesystem and copy root filesystem to ISO filesystem
 
@@ -228,3 +242,4 @@ cd ../..
 
 # Re-set script parameters
 set +ex
+

@@ -119,9 +119,9 @@ cd ../..
 # Configure and install NCURSES
 cd packages_extracted/${NCURSES_NAME_AND_VERSION}
 
-LDFLAGS=--static ./configure --prefix=$(pwd)/_install/
+LDFLAGS=--static ./configure --prefix=$(pwd)/_install/usr
 make
-make install
+make install.data
 
 cp -r _install/* ../../rootfs
 

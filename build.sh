@@ -172,9 +172,7 @@ cd ../..
 # Prepare root filesystem with some changes
 cd rootfs
 
-mkdir -p dev sys tmp var/cache var/lock var/log var/spool var/tmp
-mkdir -p etc/init.d
-mkdir -p proc/sys/kernel
+mkdir -p dev etc proc/sys/kernel sys tmp var/cache var/lock var/log var/spool var/tmp
 
 
 ## Add /etc/group
@@ -187,30 +185,23 @@ echo 'minimal' > etc/hostname
 
 
 ## Add /etc/inittab
-echo '::sysinit:/etc/init.d/rcS' > etc/inittab
+echo '::sysinit:/bin/dmesg -n 5' > etc/inittab
+echo '::sysinit:/bin/mount -t proc proc /proc' >> etc/inittab
+echo '::sysinit:/bin/mount -t sysfs sysfs /sys' >> etc/inittab
+echo '::sysinit:/bin/mount -t tmpfs -o size=64m tmp_files /tmp' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/cache' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/lock' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/log' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/run' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/spool' >> etc/inittab
+echo '::sysinit:/bin/ln -s /tmp /var/tmp' >> etc/inittab
+echo '::sysinit:/bin/mount -t devtmpfs devtmpfs /dev' >> etc/inittab
+echo '::sysinit:/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug' >> etc/inittab
+echo '::sysinit:/sbin/mdev -s' >> etc/inittab
 echo '::sysinit:/bin/hostname -F /etc/hostname' >> etc/inittab
 echo '::respawn:/sbin/syslogd -n' >> etc/inittab
 echo '::respawn:/sbin/klogd -n' >> etc/inittab
 echo '::respawn:/sbin/getty 115200 console' >> etc/inittab
-
-
-## Add /etc/init.d/rcS
-echo '#!/bin/sh' > etc/init.d/rcS
-echo 'dmesg -n 5' >> etc/init.d/rcS
-echo 'mount -t proc proc /proc' >> etc/init.d/rcS
-echo 'mount -t sysfs sysfs /sys' >> etc/init.d/rcS
-echo 'mount -t tmpfs -o size=64m tmp_files /tmp' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/cache' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/lock' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/log' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/run' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/spool' >> etc/init.d/rcS
-echo 'ln -s /tmp /var/tmp' >> etc/init.d/rcS
-echo 'mount -t devtmpfs devtmpfs /dev' >> etc/init.d/rcS
-echo 'echo /sbin/mdev > /proc/sys/kernel/hotplug' >> etc/init.d/rcS
-echo 'mdev -s' >> etc/init.d/rcS
-
-chmod +x etc/init.d/rcS
 
 
 ## Add /etc/mdev.conf

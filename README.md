@@ -10,9 +10,9 @@ The source bundles are downloaded and compiled automatically. The script require
 
 If you are using [Debian](https://www.debian.org) or [Pardus](https://www.pardus.org.tr), you should be able to resolve all build dependencies by executing the following command:
 
-    sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev libncurses-dev
+    sudo apt install wget make gawk gcc bc bison flex kbd xorriso libelf-dev libssl-dev libncurses-dev
 
-The script doesn't require root privileges. In the end you should have a bootable ISO image named `ersoy_kardesler.iso` in the same directory where you executed the script.
+The script doesn't require root privileges. In the end you should have a bootable ISO image named `ersoy-kardesler-minimal-linux-system.iso` in the same directory where you executed the script.
 
 ## License
 

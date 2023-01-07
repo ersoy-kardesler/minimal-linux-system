@@ -137,11 +137,23 @@ cd packages_extracted/${CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_2}
 mkdir -p ../../rootfs/usr/share/consolefonts
 mkdir -p ../../rootfs/usr/share/consoletrans
 mkdir -p ../../rootfs/usr/share/keymaps/i386
+mkdir -p ../../rootfs/usr/share/keymaps/i386/fgGIod
+mkdir -p ../../rootfs/usr/share/keymaps/i386/qwerty
 
 cp -r consolefonts/*.psf ../../rootfs/usr/share/consolefonts
 cp -r consolefonts/*.psf ../../rootfs/usr/share/consolefonts
 cp -r consoletrans/* ../../rootfs/usr/share/consoletrans
-cp -r keymaps/i386/* ../../rootfs/usr/share/keymaps/i386
+loadkeys -b keymaps/i386/fgGIod/trf.kmap > ../../rootfs/usr/share/keymaps/i386/fgGIod/trf.bmap
+loadkeys -b keymaps/i386/fgGIod/tr_f-latin5.kmap > ../../rootfs/usr/share/keymaps/i386/fgGIod/tr_f-latin5.bmap
+loadkeys -b keymaps/i386/fgGIod/trfu.kmap > ../../rootfs/usr/share/keymaps/i386/fgGIod/trfu.bmap
+loadkeys -b keymaps/i386/qwerty/tralt.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/tralt.bmap
+loadkeys -b keymaps/i386/qwerty/trq.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/trq.bmap
+loadkeys -b keymaps/i386/qwerty/tr_q-latin5.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/tr_q-latin5.bmap
+loadkeys -b keymaps/i386/qwerty/trqu.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/trqu.bmap
+loadkeys -b keymaps/i386/qwerty/us.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us.bmap
+loadkeys -b keymaps/i386/qwerty/us-intl.iso01.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-intl.iso01.bmap
+loadkeys -b keymaps/i386/qwerty/us-intl.iso15.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-intl.iso15.bmap
+loadkeys -b keymaps/i386/qwerty/us-latin1.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-latin1.bmap
 
 cd ../..
 

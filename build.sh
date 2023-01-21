@@ -93,7 +93,7 @@ cd packages_extracted
 
 if [ ! -d ${LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU} ]; then tar -xvf ../packages/${LINUX_LIBRE_PACKAGE_NAME} -C .; fi
 if [ ! -d ${BUSYBOX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${BUSYBOX_PACKAGE_NAME} -C .; fi
-if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION} ]; then tar -xvf ../packages/${CONSOLE_DATA_PACKAGE_NAME} -C .; fi
+if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION_2} ]; then tar -xvf ../packages/${CONSOLE_DATA_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NCURSES_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NCURSES_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NANO_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NANO_PACKAGE_NAME} -C .; fi
 if [ ! -d ${SYSLINUX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${SYSLINUX_PACKAGE_NAME} -C .; fi

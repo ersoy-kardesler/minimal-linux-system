@@ -40,15 +40,11 @@ BUSYBOX_PACKAGE_LOCATION=https://busybox.net/downloads/${BUSYBOX_PACKAGE_NAME}
 
 
 # console-data (of Debian) package
-CONSOLE_DATA_VERSION_NOT_SUFFIX=1.12
-CONSOLE_DATA_VERSION=1.12-8
-CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_1=console-data_${CONSOLE_DATA_VERSION_NOT_SUFFIX}
-CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_2=console-data-${CONSOLE_DATA_VERSION_NOT_SUFFIX}
-CONSOLE_DATA_NAME_AND_VERSION=console-data_${CONSOLE_DATA_VERSION}
-CONSOLE_DATA_PACKAGE_NAME_1=${CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_1}.orig.tar.bz2
-CONSOLE_DATA_PACKAGE_NAME_2=${CONSOLE_DATA_NAME_AND_VERSION}.debian.tar.xz
-CONSOLE_DATA_PACKAGE_LOCATION_1=http://deb.debian.org/debian/pool/main/c/console-data/${CONSOLE_DATA_PACKAGE_NAME_1}
-CONSOLE_DATA_PACKAGE_LOCATION_2=http://deb.debian.org/debian/pool/main/c/console-data/${CONSOLE_DATA_PACKAGE_NAME_2}
+CONSOLE_DATA_VERSION=1.12
+CONSOLE_DATA_NAME_AND_VERSION_1=console-data_${CONSOLE_DATA_VERSION}
+CONSOLE_DATA_NAME_AND_VERSION_2=console-data-${CONSOLE_DATA_VERSION}
+CONSOLE_DATA_PACKAGE_NAME=${CONSOLE_DATA_NAME_AND_VERSION_1}.orig.tar.bz2
+CONSOLE_DATA_PACKAGE_LOCATION=http://deb.debian.org/debian/pool/main/c/console-data/${CONSOLE_DATA_PACKAGE_NAME}
 
 
 # NCURSES package
@@ -84,8 +80,7 @@ cd packages
 
 wget -nc ${LINUX_LIBRE_PACKAGE_LOCATION}
 wget -nc ${BUSYBOX_PACKAGE_LOCATION}
-wget -nc ${CONSOLE_DATA_PACKAGE_LOCATION_1}
-wget -nc ${CONSOLE_DATA_PACKAGE_LOCATION_2}
+wget -nc ${CONSOLE_DATA_PACKAGE_LOCATION}
 wget -nc ${NCURSES_PACKAGE_LOCATION}
 wget -nc ${NANO_PACKAGE_LOCATION}
 wget -nc ${SYSLINUX_PACKAGE_LOCATION}
@@ -98,7 +93,7 @@ cd packages_extracted
 
 if [ ! -d ${LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU} ]; then tar -xvf ../packages/${LINUX_LIBRE_PACKAGE_NAME} -C .; fi
 if [ ! -d ${BUSYBOX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${BUSYBOX_PACKAGE_NAME} -C .; fi
-if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_1} ]; then tar -xvf ../packages/${CONSOLE_DATA_PACKAGE_NAME_1} -C .; cd ${CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_2}; tar -xvf ../../packages/${CONSOLE_DATA_PACKAGE_NAME_2}; cd ..; fi
+if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION} ]; then tar -xvf ../packages/${CONSOLE_DATA_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NCURSES_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NCURSES_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NANO_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NANO_PACKAGE_NAME} -C .; fi
 if [ ! -d ${SYSLINUX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${SYSLINUX_PACKAGE_NAME} -C .; fi
@@ -132,7 +127,7 @@ cd ../..
 
 
 # Install console-data of Debian
-cd packages_extracted/${CONSOLE_DATA_NAME_AND_VERSION_NOT_SUFFIX_2}
+cd packages_extracted/${CONSOLE_DATA_NAME_AND_VERSION_2}
 
 mkdir -p ../../rootfs/usr/share/consolefonts
 mkdir -p ../../rootfs/usr/share/consoletrans

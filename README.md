@@ -4,7 +4,7 @@ A minimal Linux-libre system build script based on [Minimal Linux Script](https:
 
 Copyright (c) 2016-2021 John Davidson
 
-Copyright (c) 2021-2022 Ercan Ersoy and Erdem Ersoy
+Copyright (c) 2021-2023 Ercan Ersoy and Erdem Ersoy
 
 The source bundles are downloaded and compiled automatically. The script requires host toolchain.
 

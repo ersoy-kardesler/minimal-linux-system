@@ -2,7 +2,7 @@
 #
 # Ersoy Kardesler Minimal Linux System build script
 # Copyright (C) 2016-2021 John Davidson
-#               2021-2022 Erdem Ersoy and Ercan Ersoy
+#               2021-2023 Erdem Ersoy and Ercan Ersoy
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ set -ex
 
 
 # Linux-libre package
-LINUX_LIBRE_VERSION_NOT_GNU=5.10.155
+LINUX_LIBRE_VERSION_NOT_GNU=5.10.184
 LINUX_LIBRE_VERSION=${LINUX_LIBRE_VERSION_NOT_GNU}-gnu1
 LINUX_LIBRE_NAME_AND_VERSION=linux-libre-${LINUX_LIBRE_VERSION}
 LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU=linux-${LINUX_LIBRE_VERSION_NOT_GNU}
@@ -33,7 +33,7 @@ LINUX_LIBRE_PACKAGE_LOCATION=http://linux-libre.fsfla.org/pub/linux-libre/releas
 
 
 # Busybox package
-BUSYBOX_VERSION=1.34.1
+BUSYBOX_VERSION=1.36.1
 BUSYBOX_NAME_AND_VERSION=busybox-${BUSYBOX_VERSION}
 BUSYBOX_PACKAGE_NAME=${BUSYBOX_NAME_AND_VERSION}.tar.bz2
 BUSYBOX_PACKAGE_LOCATION=https://busybox.net/downloads/${BUSYBOX_PACKAGE_NAME}
@@ -41,21 +41,21 @@ BUSYBOX_PACKAGE_LOCATION=https://busybox.net/downloads/${BUSYBOX_PACKAGE_NAME}
 
 # console-data (of Debian) package
 CONSOLE_DATA_VERSION=1.12
-CONSOLE_DATA_NAME_AND_VERSION_1=console-data_${CONSOLE_DATA_VERSION}
+CONSOLE_DATA_NAME_AND_VERSION=console-data_${CONSOLE_DATA_VERSION}
 CONSOLE_DATA_NAME_AND_VERSION_2=console-data-${CONSOLE_DATA_VERSION}
-CONSOLE_DATA_PACKAGE_NAME=${CONSOLE_DATA_NAME_AND_VERSION_1}.orig.tar.bz2
+CONSOLE_DATA_PACKAGE_NAME=${CONSOLE_DATA_NAME_AND_VERSION}.orig.tar.bz2
 CONSOLE_DATA_PACKAGE_LOCATION=http://deb.debian.org/debian/pool/main/c/console-data/${CONSOLE_DATA_PACKAGE_NAME}
 
 
 # NCURSES package
-NCURSES_VERSION=6.3
+NCURSES_VERSION=6.4
 NCURSES_NAME_AND_VERSION=ncurses-${NCURSES_VERSION}
 NCURSES_PACKAGE_NAME=${NCURSES_NAME_AND_VERSION}.tar.gz
 NCURSES_PACKAGE_LOCATION=https://invisible-mirror.net/archives/ncurses/${NCURSES_PACKAGE_NAME}
 
 
 # GNU nano package
-NANO_VERSION=7.0
+NANO_VERSION=7.2
 NANO_NAME_AND_VERSION=nano-${NANO_VERSION}
 NANO_PACKAGE_NAME=${NANO_NAME_AND_VERSION}.tar.xz
 NANO_PACKAGE_LOCATION=https://www.nano-editor.org/dist/v7/${NANO_PACKAGE_NAME}
@@ -111,7 +111,6 @@ make
 cp arch/x86/boot/bzImage ../../isoimage/kernel.gz
 
 cd ../..
-
 
 # Configure and install BusyBox
 cd packages_extracted/${BUSYBOX_NAME_AND_VERSION}

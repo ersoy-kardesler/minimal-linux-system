@@ -2,7 +2,7 @@
 #
 # Ersoy Kardesler Minimal Linux System test script
 # Copyright (C) 2017-2021 John Davidson
-#               2021-2022 Ercan Ersoy and Erdem Ersoy
+#               2021-2023 Ercan Ersoy and Erdem Ersoy
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

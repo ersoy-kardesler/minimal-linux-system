@@ -47,6 +47,14 @@ CONSOLE_DATA_PACKAGE_NAME=${CONSOLE_DATA_NAME_AND_VERSION}.orig.tar.bz2
 CONSOLE_DATA_PACKAGE_LOCATION=http://deb.debian.org/debian/pool/main/c/console-data/${CONSOLE_DATA_PACKAGE_NAME}
 
 
+# console-setup-linux (of Debian) package
+CONSOLE_SETUP_LINUX_VERSION=1.205
+CONSOLE_SETUP_LINUX_NAME_AND_VERSION=console-setup_${CONSOLE_SETUP_LINUX_VERSION}
+CONSOLE_SETUP_LINUX_NAME_AND_VERSION_2=console-setup-${CONSOLE_SETUP_LINUX_VERSION}
+CONSOLE_SETUP_LINUX_PACKAGE_NAME=${CONSOLE_SETUP_LINUX_NAME_AND_VERSION}.tar.xz
+CONSOLE_SETUP_LINUX_PACKAGE_LOCATION=http://deb.debian.org/debian/pool/main/c/console-setup/${CONSOLE_SETUP_LINUX_PACKAGE_NAME}
+
+
 # NCURSES package
 NCURSES_VERSION=6.4
 NCURSES_NAME_AND_VERSION=ncurses-${NCURSES_VERSION}
@@ -81,6 +89,7 @@ cd packages
 wget -nc ${LINUX_LIBRE_PACKAGE_LOCATION}
 wget -nc ${BUSYBOX_PACKAGE_LOCATION}
 wget -nc ${CONSOLE_DATA_PACKAGE_LOCATION}
+wget -nc ${CONSOLE_SETUP_LINUX_PACKAGE_LOCATION}
 wget -nc ${NCURSES_PACKAGE_LOCATION}
 wget -nc ${NANO_PACKAGE_LOCATION}
 wget -nc ${SYSLINUX_PACKAGE_LOCATION}
@@ -94,6 +103,7 @@ cd packages_extracted
 if [ ! -d ${LINUX_LIBRE_NAME_AND_VERSION_NOT_LIBRE_AND_GNU} ]; then tar -xvf ../packages/${LINUX_LIBRE_PACKAGE_NAME} -C .; fi
 if [ ! -d ${BUSYBOX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${BUSYBOX_PACKAGE_NAME} -C .; fi
 if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION_2} ]; then tar -xvf ../packages/${CONSOLE_DATA_PACKAGE_NAME} -C .; fi
+if [ ! -d ${CONSOLE_SETUP_LINUX_NAME_AND_VERSION_2} ]; then tar -xvf ../packages/${CONSOLE_SETUP_LINUX_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NCURSES_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NCURSES_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NANO_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NANO_PACKAGE_NAME} -C .; fi
 if [ ! -d ${SYSLINUX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${SYSLINUX_PACKAGE_NAME} -C .; fi
@@ -148,6 +158,17 @@ loadkeys -b keymaps/i386/qwerty/us.kmap > ../../rootfs/usr/share/keymaps/i386/qw
 loadkeys -b keymaps/i386/qwerty/us-intl.iso01.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-intl.iso01.bmap
 loadkeys -b keymaps/i386/qwerty/us-intl.iso15.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-intl.iso15.bmap
 loadkeys -b keymaps/i386/qwerty/us-latin1.kmap > ../../rootfs/usr/share/keymaps/i386/qwerty/us-latin1.bmap
+
+cd ../..
+
+# Install console-setup-linux of Debian
+cd packages_extracted/${CONSOLE_SETUP_LINUX_NAME_AND_VERSION_2}
+
+make gzipped_linux_fonts
+
+mkdir -p ../../rootfs/usr/share/consolefonts
+
+cp -r Fonts/*.psf.gz ../../rootfs/usr/share/consolefonts
 
 cd ../..
 

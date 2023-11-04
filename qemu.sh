@@ -17,4 +17,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-qemu-system-x86_64 -m 128M -cdrom ersoy-kardesler-minimal-linux-system.iso -boot d -vga std
+qemu-system-x86_64 -machine q35 -m 128M -cdrom ersoy-kardesler-minimal-linux-system.iso -boot d -device bochs-display,bus=pcie.0 -device intel-hda,bus=pcie.0

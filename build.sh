@@ -69,6 +69,13 @@ NANO_PACKAGE_NAME=${NANO_NAME_AND_VERSION}.tar.xz
 NANO_PACKAGE_LOCATION=https://www.nano-editor.org/dist/v7/${NANO_PACKAGE_NAME}
 
 
+# mpg123 package
+MPG123_VERSION=1.26.4
+MPG123_NAME_AND_VERSION=mpg123-${MPG123_VERSION}
+MPG123_PACKAGE_NAME=${MPG123_NAME_AND_VERSION}.tar.bz2
+MPG123_PACKAGE_LOCATION=https://mpg123.org/download/${MPG123_PACKAGE_NAME}
+
+
 # Syslinux package
 SYSLINUX_VERSION=6.03
 SYSLINUX_NAME_AND_VERSION=syslinux-${SYSLINUX_VERSION}
@@ -92,6 +99,7 @@ wget -nc ${CONSOLE_DATA_PACKAGE_LOCATION}
 wget -nc ${CONSOLE_SETUP_LINUX_PACKAGE_LOCATION}
 wget -nc ${NCURSES_PACKAGE_LOCATION}
 wget -nc ${NANO_PACKAGE_LOCATION}
+wget -nc ${MPG123_PACKAGE_LOCATION}
 wget -nc ${SYSLINUX_PACKAGE_LOCATION}
 
 cd ..
@@ -106,6 +114,7 @@ if [ ! -d ${CONSOLE_DATA_NAME_AND_VERSION_2} ]; then tar -xvf ../packages/${CONS
 if [ ! -d ${CONSOLE_SETUP_LINUX_NAME_AND_VERSION_2} ]; then tar -xvf ../packages/${CONSOLE_SETUP_LINUX_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NCURSES_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NCURSES_PACKAGE_NAME} -C .; fi
 if [ ! -d ${NANO_NAME_AND_VERSION} ]; then tar -xvf ../packages/${NANO_PACKAGE_NAME} -C .; fi
+if [ ! -d ${MPG123_NAME_AND_VERSION} ]; then tar -xvf ../packages/${MPG123_PACKAGE_NAME} -C .; fi
 if [ ! -d ${SYSLINUX_NAME_AND_VERSION} ]; then tar -xvf ../packages/${SYSLINUX_PACKAGE_NAME} -C .; fi
 
 cd ..
@@ -175,7 +184,7 @@ cd ../..
 # Configure and install NCURSES
 cd packages_extracted/${NCURSES_NAME_AND_VERSION}
 
-LDFLAGS=--static ./configure --prefix=$(pwd)/_install/usr
+LDFLAGS=-static ./configure --prefix=$(pwd)/_install/usr
 make
 make install.data
 
@@ -187,7 +196,19 @@ cd ../..
 # Configure and install GNU nano
 cd packages_extracted/${NANO_NAME_AND_VERSION}
 
-LDFLAGS=--static ./configure --prefix=$(pwd)/_install/
+LDFLAGS=-static ./configure --prefix=$(pwd)/_install/
+make
+make install
+
+cp -r _install/* ../../rootfs
+
+cd ../..
+
+
+# Configure and install MPG123
+cd packages_extracted/${MPG123_NAME_AND_VERSION}
+
+LDFLAGS=-static ./configure --enable-static --prefix=$(pwd)/_install/usr
 make
 make install
 
@@ -200,6 +221,8 @@ cd ../..
 cd rootfs
 
 mkdir -p dev etc proc/sys/kernel sys tmp var/cache var/lock var/log var/spool var/tmp
+
+cp -r ../rootfs_overlay/* .
 
 
 ## Add /etc/group
